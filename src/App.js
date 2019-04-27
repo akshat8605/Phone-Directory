@@ -3,6 +3,7 @@ import Layout from './components/Layout';
 import Form from './components/Form';
 import './App.css'
 import { Route, Switch} from 'react-router-dom'
+
 var list=[]
 class App extends Component { 
 	constructor(){
@@ -10,7 +11,15 @@ class App extends Component {
       this.state={
       	key:''
       }
+        if (localStorage.getItem('dataa')) {
+          list =JSON.parse(localStorage.getItem('dataa'));
+        }
 
+       }
+
+       componentDidMount(){
+      
+        
        }
 
 onSubmit(name,phone){
@@ -18,7 +27,12 @@ onSubmit(name,phone){
 	temp['name']=name;
 	temp['phone']=phone;
 	list.push(temp)
+   localStorage.setItem('dataa',JSON.stringify(list));
+
+
 }
+
+
 Delete=(name)=>{
 for( var i = 0; i < list.length; i++){ 
    if ( list[i].name === name) {
